@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.util.List;
 
 public class WebElementTest {
     WebDriver driver;
@@ -71,6 +72,25 @@ public class WebElementTest {
         em.sendKeys("abc@12");
         Thread.sleep(3000);
         //doubt
-        em.sendKeys(Keys.CONTROL +"a"+ Keys.DELETE);
+        em.sendKeys(Keys.CONTROL + "a" + Keys.DELETE);
+    }
+
+    @Test
+    public void findElements() {
+        List<WebElement> links = driver.findElements(By.tagName("a"));
+        int totalLink = links.size();
+        System.out.println("toatal links presents on webpage :" + totalLink);
+        int visibleLinkCount = 0;
+        int invisibleLinkCount = 0;
+        for (WebElement link : links) {
+            if (link.isDisplayed()) {
+                visibleLinkCount++;
+            } else {
+                invisibleLinkCount++;
+            }
+        }
+        System.out.println("visible links :" + visibleLinkCount);
+        System.out.println("invisble links :" + invisibleLinkCount);
+        driver.close();
     }
 }

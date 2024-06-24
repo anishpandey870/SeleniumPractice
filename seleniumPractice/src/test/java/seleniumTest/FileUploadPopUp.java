@@ -45,8 +45,7 @@ public class FileUploadPopUp {
         driver.get("https://smallpdf.com/pdf-converter#r=convert");
         driver.findElement(By.xpath("//span[text()='Select files']")).click();
         Thread.sleep(2000);
-        //doubt
-        Runtime.getRuntime().exec("C:\\Users\\anish\\OneDrive\\Desktop\\popUp.exe");
+        Runtime.getRuntime().exec("C:\\Users\\anish\\OneDrive\\Desktop\\pop_up.exe");
     }
 
 }
