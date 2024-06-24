@@ -1,6 +1,8 @@
 package seleniumTest;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.Point;
+import org.openqa.selenium.Rectangle;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.io.FileHandler;
 import org.testng.annotations.BeforeTest;
@@ -20,14 +22,8 @@ public class SignUPTest {
         driver.get("https://www.facebook.com/");
     }
 
-//    @Test
-//    public void login() {
-//        driver.findElement(By.name("email")).sendKeys("abc@gmail.com");
-//        driver.findElement(By.id("pass")).sendKeys("abc@123");
-//        driver.findElement(By.xpath("//button[text()='Log in']")).click();
-//    }
 
-    @Test
+    @Test(priority = 1)
     public void signUp() {
         driver.findElement(By.xpath("//a[text()='Create new account']")).click();
         try {
@@ -37,9 +33,10 @@ public class SignUPTest {
         }
     }
 
-    @Test(priority = 1)
+    @Test(priority = 2)
     public void nameAndSurname() {
-        WebElement uname = driver.findElement(By.name("firstname"));
+        signUp();
+        WebElement uname = driver.findElement(By.cssSelector("input[name='firstname']"));
         uname.clear();
         uname.sendKeys("Raju");
         //get attribute
@@ -48,11 +45,14 @@ public class SignUPTest {
         //get cssValue
         String css = uname.getCssValue("color");
         System.out.println("this is username Css value :" + css);
-        driver.findElement(By.name("lastname")).sendKeys("Kumar");
+//doubt
+        driver.findElement(By.name("lastname")).sendKeys("Surash");
+       // driver.findElement(By.cssSelector("input[type='text'][id='u_1v_d_MT']")).sendKeys("Kumar");
+       // driver.findElement(By.xpath("//input[contains(@id,'u_')]")).sendKeys("Suman");
     }
 
 
-    @Test(priority = 2)
+    @Test(priority = 3)
     public void dates() {
         //selecting day
         WebElement ele = driver.findElement(By.xpath("//select[@id='day']"));
@@ -82,7 +82,7 @@ public class SignUPTest {
         for (WebElement years : year) {
             String y = years.getText();
             System.out.println(y + " ");
-            if (y.equals("2024")) {
+            if (y.equals("2001")) {
                 years.click();
             }
 
@@ -90,7 +90,7 @@ public class SignUPTest {
 
     }
 
-    @Test(priority = 3)
+    @Test(priority = 4)
     public void mobile() {
         WebElement mob = driver.findElement(By.xpath("//input[@name='reg_email__']"));
         mob.sendKeys("6788575978");
@@ -98,19 +98,35 @@ public class SignUPTest {
         Point loc = mob.getLocation();
         System.out.println("location: " + loc);
         //get rectangle
-        Rectangle rec= mob.getRect();
-        System.out.println("rectangle: "+rec);
+        Rectangle rec = mob.getRect();
+        System.out.println("rectangle: " + rec);
         //get tag name
-        System.out.println("tag name: "+mob.getTagName());
+        System.out.println("tag name: " + mob.getTagName());
         //isDisplayed
-        System.out.println("displayed: "+mob.isDisplayed());
+        System.out.println("displayed: " + mob.isDisplayed());
+        //isEnabale
+        System.out.println("enabale :" + mob.isEnabled());
+        //get size
+        System.out.println("size :" + mob.getSize());
     }
 
-    @Test(priority = 4)
+
+    @Test(priority = 5)
+    public void password(){
+        signUp();
+       // driver.findElement(By.xpath("//input[@id='password_step_input']")).sendKeys("abc@12");
+        //contains
+        driver.findElement(By.xpath("//input[contains(@id,'password_step_input')]")).sendKeys("abc@12");
+    }
+
+    @Test(priority = 6)
     public void gender() throws InterruptedException {
         driver.findElement(By.xpath("//label[text()='Female']")).click();
         Thread.sleep(5000);
-        driver.findElement(By.xpath("//label[text()='Male']")).click();
+        WebElement gen = driver.findElement(By.xpath("//label[text()='Male']"));
+        gen.click();
+        boolean ge = gen.isSelected();
+        System.out.println("this check for selection: " + ge);
     }
 
     @Test
@@ -120,4 +136,10 @@ public class SignUPTest {
         File DesFile = new File("C:\\Users\\anish\\IdeaProjects\\seleniumPractice\\loginSS\\loginSsort.png");
         FileHandler.copy(SrcFile, DesFile);
     }
+
+    @Test(priority = 7)
+    public void signButton() {
+        driver.findElement(By.xpath("//button[text()='Sign Up']")).submit();
+    }
+
 }

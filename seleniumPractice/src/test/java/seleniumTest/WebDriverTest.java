@@ -30,7 +30,7 @@ public class WebDriverTest {
         String window = driver.getWindowHandle();
         System.out.println("this get window id :" + window);
 
-        //driver.close();
+       // driver.close();
 
     }
 
