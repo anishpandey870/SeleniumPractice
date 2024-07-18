@@ -6,7 +6,10 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class HomePage extends TestBase {
+
+
     public HomePage() {
+        log.info("invoking the page factory");
         PageFactory.initElements(driver, this);
     }
 
@@ -17,19 +20,23 @@ public class HomePage extends TestBase {
     WebElement adminLink;
     @FindBy(xpath = "//span[text()='PIM']")
     WebElement pimLink;
-//action
-    public String verifyTitle(){
-       return driver.getTitle();
+
+    //action
+    public String verifyTitle() {
+        log.info("returning get title....");
+        return driver.getTitle();
     }
 
-    public boolean verifyUserLabel(){
+    public boolean verifyUserLabel() {
         return userLabel.isDisplayed();
     }
-    public AdminPage clickOnAdmin(){
+
+    public AdminPage clickOnAdmin() {
         adminLink.click();
         return new AdminPage();
     }
-    public PimPage clickOnPim(){
+
+    public PimPage clickOnPim() {
         pimLink.click();
         return new PimPage();
     }

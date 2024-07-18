@@ -3,11 +3,14 @@ package com.crm.testcases;
 import com.crm.base.TestBase;
 import com.crm.page.HomePage;
 import com.crm.page.LoginPage;
+import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+@Listeners(iListener.IListenerTest.class)
 public class LoginPageTest extends TestBase {
     LoginPage loginPage;
     HomePage homePage;
@@ -35,6 +38,10 @@ public class LoginPageTest extends TestBase {
     }
 
     @Test
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature("login")
+    @Story("user enter valid username and password")
+    @Description("user login application")
     public void loginTest() {
       homePage=  loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
     }

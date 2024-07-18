@@ -6,10 +6,9 @@ import com.crm.page.HomePage;
 import com.crm.page.LoginPage;
 import com.crm.page.PimPage;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
+@Listeners(iListener.IListenerTest.class)
 public class HomePageTest extends TestBase {
     LoginPage loginPage;
     HomePage homePage;
@@ -23,6 +22,7 @@ public class HomePageTest extends TestBase {
     @BeforeMethod
     public void setUp() {
         initialization();
+        log.info("invoke the setup method");
         loginPage = new LoginPage();
         adminPage = new AdminPage();
         pimPage = new PimPage();
@@ -31,6 +31,7 @@ public class HomePageTest extends TestBase {
 
     @Test(priority = 1)
     public void verifyHomePageTitle() {
+        log.info("inside verifyHomePageTitle method  ");
         String homePageTitle = homePage.verifyTitle();
         Assert.assertEquals(homePageTitle, "OrangeHRM", "homePage title not match");
     }
@@ -53,6 +54,6 @@ public class HomePageTest extends TestBase {
 
     @AfterClass
     public void tearDown() {
-        driver.close();
+        driver.quit();
     }
 }

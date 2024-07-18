@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+
+            <listeners>
+                <listener class-name="iListener.IListenerTest"></listener>
+            </listeners>
+
+    <test verbose="2" preserve-order="true" name="D:/SelenumGit/CRMProject">
+        <classes>
+            <class name="com.crm.testcases.AdminPageTest">
+                <methods>
+                    <include name="verifyAdminLabelTest"/>
+                    <include name="adminUserNameTest"/>
+                </methods>
+            </class>
+            <class name="com.crm.testcases.HomePageTest">
+                <methods>
+                    <include name="verifyHomePageTitle"/>
+                    <include name="verifyUser"/>
+                    <include name="verifyAdminLinkTest"/>
+                    <include name="verifyPimLink"/>
+                </methods>
+            </class>
+            <class name="com.crm.testcases.LoginPageTest">
+                <methods>
+                    <include name="loginPageTest"/>
+                    <include name="logoTest"/>
+                    <include name="loginTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

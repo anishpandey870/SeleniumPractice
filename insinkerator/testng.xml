@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="D:/SelenumGit/insinkerator">
+        <classes>
+            <class name="com.insin.testCases.CommercialTest">
+                <methods>
+                    <include name="commercialBrochureTest"/>
+                </methods>
+            </class>
+            <class name="com.insin.testCases.HomePageTest">
+                <methods>
+                    <include name="validateTitle"/>
+                    <include name="verifyProductIcon"/>
+                    <include name="verifyProductBar"/>
+                    <include name="commercialPageTest"/>
+                    <include name="verifydisposerBar"/>
+                    <include name="clickFeedbackBox"/>
+                </methods>
+            </class>
+            <class name="com.insin.testCases.ResidentialTest">
+                <methods>
+                    <include name="validateResidentialPageTest"/>
+                    <include name="verifyRangeBrochure"/>
+                </methods>
+            </class>
+            <class name="com.insin.testCases.WasteDisposerTest">
+                <methods>
+                    <include name="validateDisposerPageTest"/>
+                    <include name="clickSolutionTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
